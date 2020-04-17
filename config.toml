@@ -1,6 +1,6 @@
 baseURL = "https://example.com"
 languageCode = "zh-cn"
-title = "LeaveIt"
+title = "Kepontry's Blog"
 theme = "LeaveIt"
 
 paginate = 12
