@@ -1,6 +1,6 @@
-baseURL = "https://blog.example.com/"
+baseURL = "https://blog.kepontry.cn/"
 languageCode = "zh-cn"
-title = "example blog"
+title = "Kepontry's blog"
 
 theme = "left"
 
@@ -9,10 +9,10 @@ paginate = 12
 enableEmoji = true
 enableRobotsTXT = true
 googleAnalytics = ""
-disqusShortname = "yourdiscussshortname"
+disqusShortname = ""
 
 [sitemap]
-    changefreq = "monthly"
+    changefreq = "weekly"
     filename = "sitemap.xml"
     priority = 0.5
 
@@ -48,8 +48,8 @@ disqusShortname = "yourdiscussshortname"
 
 [params]
     since = 2020
-    author = "batkiz"               # Author's name
-    subtitle = ""
+    author = "kepontry"               # Author's name
+    subtitle = "subtitle"
     home_mode = "" # post or other
 
     mathjax = true
