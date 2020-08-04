@@ -1,18 +1,24 @@
-+++
-title = "About Hugo"
-date = "2014-04-09"
-menu = "main"
-+++
+---
+title: 关于我
+date: 2020-08-04
+---
 
-Hugo is the **world’s fastest framework for building websites**. It is written in Go.
+# About
 
-It makes use of a variety of open source projects including:
+软件工程大二学生，菜鸡一枚，喜欢不断地制定计划，缺乏执行力。
 
-* https://github.com/russross/blackfriday
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
+# Gossip
 
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+介绍还是慢慢再完善吧，自我介绍还真是一件难事。
 
+# 关于个人博客
+
+链接待更新
+
+# 站点历史
+
+2020.8  将博客搬迁至Hugo ，使用Left主题
+
+2020.3 - 2020.6  尝试Typecho建站
+
+2020.1  使用Hexo + Next搭建了博客，大概写了两周的博客，三四篇产出。

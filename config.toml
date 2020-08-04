@@ -49,7 +49,7 @@ disqusShortname = ""
 [params]
     since = 2020
     author = "kepontry"               # Author's name
-    subtitle = "subtitle"
+    subtitle = "十年饮冰，难凉热血"
     home_mode = "" # post or other
 
     mathjax = true
@@ -60,7 +60,7 @@ disqusShortname = ""
     pinterest_verification = ""
     baidu_verification = ""
 
-    avatar = "" #comment it to use gravatar
+    avatar = "![](https://cdn.jsdelivr.net/gh/kepontry/picbed/img/ashitaka.jpg)" #comment it to use gravatar
     socialShare = false
 
     description = "" # site description
