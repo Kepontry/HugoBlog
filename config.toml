@@ -60,7 +60,7 @@ disqusShortname = ""
     pinterest_verification = ""
     baidu_verification = ""
 
-    avatar = "![](https://cdn.jsdelivr.net/gh/kepontry/picbed/img/ashitaka.jpg)" #comment it to use gravatar
+    avatar = "https://cdn.jsdelivr.net/gh/kepontry/picbed/img/ashitaka.jpg" #comment it to use gravatar
     socialShare = false
 
     description = "" # site description
@@ -73,7 +73,7 @@ disqusShortname = ""
 
 
 [params.social]
-    #GitHub = "xxxx"
+    GitHub = "kepontry"
     #Linkedin = "xxxx"
     #Twitter = "xxxx"
     #Instagram = "xxxx"
@@ -156,10 +156,10 @@ defaultContentLanguage = "en"
     baseName = "atom"
 
 [author]
-    name = "xxxx"
+    name = "kepontry"
 
   [params.publisher]
-    name = "xxxx"
+    name = "kepontry"
 
   [params.publisher.logo]
     url = "logo.png"
