@@ -1,0 +1,233 @@
+/** Post **/
+
+.post-warp {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding-top: 2rem;
+
+  .post-header h1 {
+    margin: 0 !important;
+  }
+
+  .post-title {
+    font-size: 2em;
+    line-height: 1.5em;
+  }
+
+  .post-meta {
+    color: $font-secondary-color !important;
+
+    a {
+      color: $post-link-color;
+
+      &:hover {
+        color: $post-link-hover-color;
+      }
+    }
+  }
+
+  .post-content {
+    padding-top: 2rem;
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      padding-top: 0.8em;
+      padding-bottom: 0.3em;
+    }
+
+    h2::before {
+      content: "#";
+      margin-right: 5px;
+      color: $font-secondary-color;
+    }
+
+    h3::before {
+      content: "##";
+      margin-right: 5px;
+      color: $font-secondary-color;
+    }
+
+    a.anchor {
+      float: left;
+      margin-left: -20px;
+      padding-right: 6px;
+      box-shadow: none;
+      opacity: 0.8;
+      &:hover {
+        background: none;
+        color: $global-link-hover-color;
+        opacity: 1;
+      }
+
+      svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: baseline;
+        visibility: hidden;
+      }
+      &:focus svg {
+        visibility: visible;
+      }
+    }
+
+    h1:hover a.anchor svg,
+    h2:hover a.anchor svg,
+    h3:hover a.anchor svg,
+    h4:hover a.anchor svg,
+    h5:hover a.anchor svg,
+    h6:hover a.anchor svg {
+      visibility: visible;
+    }
+
+    a {
+      color: $post-link-color;
+    }
+
+    a:hover {
+      color: $post-link-hover-color;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    code,
+    pre {
+      padding: 7px, 7px, 7px, 7px;
+      font-size: 14px;
+      font-family: "Fira Code", monospace;
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    code:not([class]) {
+      border: 1px solid $border-color;
+      padding: 0 0.3em;
+      background: transparent;
+    }
+
+    ul {
+      padding-left: 2em;
+    }
+
+    table {
+      max-width: 100%;
+      margin: 10px 0;
+      border-spacing: 0;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.125);
+
+      th,
+      td {
+        padding: 5px 15px;
+        border: 1px double #ebe9f5;
+      }
+    }
+
+    figure {
+      text-align: center;
+
+      img:hover {
+        cursor: zoom-in;
+      }
+    }
+
+    .image-caption:not(:empty) {
+      min-width: 20%;
+      max-width: 80%;
+      display: inline-block;
+      padding: 10px;
+      margin: 0 auto;
+      border-bottom: 1px solid #d9d9d9;
+      font-size: 14px;
+      color: #969696;
+      line-height: 1.7;
+    }
+
+    img {
+      display: block;
+      max-width: 80%;
+      height: auto;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    img[data-action="zoom"] {
+      cursor: zoom-in;
+    }
+
+    .featured_image {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      margin: 0 !important;
+    }
+  }
+
+  p {
+    font-size: 1em;
+    margin: 0.5em 0 0.5em 0;
+  }
+
+  .post-copyright {
+    margin-top: 5rem;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    .copyright-item {
+      text-align: center;
+      margin: 5px 0;
+    }
+  }
+
+  .post-tags {
+    padding: 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .post-nav {
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+    }
+
+    & a.prev,
+    & a.next {
+      font-weight: 600;
+      font-size: 16px;
+
+      transition-property: transform;
+      transition-timing-function: ease-out;
+      transition-duration: 0.3s;
+    }
+
+    & a.prev {
+      float: left;
+    }
+
+    & a.prev:hover {
+      transform: translateX(-4px);
+    }
+
+    & a.next {
+      float: right;
+    }
+
+    & a.next:hover {
+      transform: translateX(4px);
+    }
+  }
+
+  .tag:not(:last-child) a::after {
+    content: " / ";
+  }
+
+  .post-comment {
+    padding: 3em 0;
+  }
+}

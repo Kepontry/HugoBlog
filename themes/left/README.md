@@ -1,3 +1,39 @@
+# left
+
+`left` is a hugo theme forked from [KeepIt](https://github.com/Fastbyte01/KeepIt) (which is based on [LeaveIt](https://github.com/liuzc/LeaveIt)).
+
+take a quick look [here](https://blog.batkiz.com)
+
+## difference
+
+this theme has lots of enhancement on LeaveIt, e.g.
+* auto dark mode (unfortunately we don't have manual option now)
+* mathjax support
+* better code highlighting (auto change light/dark based on the theme!)
+* article heading anchors
+* etc.
+
+### code highlight
+be sure to add
+```toml
+[markup]
+  [markup.highlight]
+    codeFences = false
+```
+to your config file or you will get an annoying code block
+
+### mathjax
+if you want use mathjax, please add
+```toml
+mathjax = true
+```
+both to your site config file and your article file frontmatters.(the example is `toml` code, use yaml or json based on your own config file/article frontmatters)
+
+## example config
+
+an example config file is like this:
+
+```toml
 baseURL = "https://blog.example.com/"
 languageCode = "zh-cn"
 title = "example blog"
@@ -203,3 +239,4 @@ defaultContentLanguage = "en"
     repo = ""               # The repo to store comments
     clientId = ""           # Your client ID
     clientSecret = ""       # Your client secret
+```
