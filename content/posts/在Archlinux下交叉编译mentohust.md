@@ -3,7 +3,7 @@ title: 在Archlinux下交叉编译mentohust
 author: "Kepontry"
 tags: ["Archlinux", "mentohust","交叉编译"]
 categories: ["Linux"]
-date: 2020-08-10
+date: 2020-08-09
 ---
 
 ## 编译环境
