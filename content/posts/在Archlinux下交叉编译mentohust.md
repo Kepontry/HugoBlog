@@ -16,7 +16,9 @@ date: 2020-08-09
 
 ## 关于本文
 
-本文是作者根据U大的[交叉编译教程](https://koolshare.cn/thread-43133-1-1.html)进行的一次探索，主要是为了学习交叉编译相关知识，编译生成的mentohust文件未在路由器上进行测试。如果想要完整的路由器解决方案，我在网上也找到一篇[很好的教程](https://www.viseator.com/2017/09/05/mr12u_openwrt_mentohust/)。由于作者是第一次接触交叉编译，文中若有错误，还请大家指正。
+本文是作者根据U大的[交叉编译教程](https://koolshare.cn/thread-43133-1-1.html)进行的一次探索，主要是为了学习交叉编译相关知识，编译生成的mentohust文件未在路由器上进行测试。如果想要完整的路由器解决方案，我在网上也找到一篇[很好的教程](https://www.viseator.com/2017/09/05/mr12u_openwrt_mentohust/)，可以参考一下。由于作者是第一次接触交叉编译，文中若有错误，还请大家指正。
+
+> **注意**：本文更倾向于一种对交叉编译的探索的记录，并非step by step式的小白教程，主要关注bug的出现原因与解决思路，贴出的代码有一些是不必要的，仅为展示解决思路。
 
 ## 编译过程
 
@@ -24,7 +26,7 @@ date: 2020-08-09
 
 - 编译工具链：[hndtools-arm-linux-2.6.36-uclibc-4.5.3](http://www.belkin.com/support/dl/EA6200_v1.1.41.164830-Build15.tar.gz)
 
-  这个文件有500多MB，而且下载速度比较慢，我是在Windows下使用XDM下载后，再通过U盘将文件转移到Archlinux下的。下载的文件名为**EA6200_v1.1.41.164830-Build15**，在该文件夹的/src/arm-brcm-linux-uclibcgnueabi目录下有一个**hndtools-arm-linux-2.6.36-uclibc-4.5.3.tar.bz2**文件，这就是本次编译用到的工具链。
+  这个文件有500多MB，而且下载速度比较慢，我是在Windows下使用XDM下载后，再通过U盘将文件转移到Archlinux下的。下载的文件名为**EA6200_v1.1.41.164830-Build15**，在该文件夹的/src/arm-brcm-linux-uclibcgnueabi目录下有一个**hndtools-arm-linux-2.6.36-uclibc-4.5.3.tar.bz2**文件，这就是本次编译用到的工具链，将其解压即可。
 
 - mentohust
 
@@ -32,7 +34,7 @@ date: 2020-08-09
   git clone https://github.com/updateing/mentohust.git
   ```
   
-- libpcap（建议寻找早期版本）
+- libpcap（这里使用的是1.8.0版本，原因后面会讲）
 
   ```shell
   git clone https://github.com/the-tcpdump-group/libpcap.git
@@ -55,13 +57,13 @@ date: 2020-08-09
 export PATH=$PATH:/home/gabon/Desktop/Work/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin # 此处需换成自己工具链文件夹
 ```
 
-接下来通过运行./configure……生成Makefile
+接下来运行./configure……生成Makefile
 
 ```shell
  ./configure --host=arm-brcm-linux-uclibcgnueabi --with-pcap=linux
 ```
 
-这里遇到第一个报错，报错信息忘记截下来了，大致就是显示工具链bin目录下的某个文件No such file or directory，大概连着有十几个都是这样的错。第一个错指向的是arm-brcm-linux-uclibcgnueabi-gcc文件，但是目录下的确有这个文件，直接执行该文件也显示No such file or directory，由此排除工具链问题。通过搜索找到了[原因](https://blog.csdn.net/sun927/article/details/46593129)，**我的系统是64位的，而工具链中的程序是32位的，在64位系统上与运行32位程序，需要安装32位lib库**。
+这里遇到第一个报错，报错信息忘记截下来了，大致就是显示工具链bin目录下的某个文件No such file or directory，大概连着有十几个都是这样的错。第一个错误指向的是arm-brcm-linux-uclibcgnueabi-gcc文件，但是目录下的确有这个文件，直接执行该文件也显示No such file or directory，由此排除工具链问题。通过搜索找到了[原因](https://blog.csdn.net/sun927/article/details/46593129)，**我的系统是64位的，而工具链中的程序是32位的，在64位系统上与运行32位程序，需要安装32位lib库**。
 
 ```shell
 uname -a # 查询系统信息
@@ -149,7 +151,7 @@ checking for nl_socket_alloc in -lnl-3... no
 configure: error: libnl support requested but libnl not found
 ```
 
-大致意思是用pkg-config找不到libnl-genl-3.0这个模块，但是我在zsh中用pkg-config命令是可以找到这个模块的，并且能够正确输出它的lib文件夹
+大致意思是用pkg-config找不到libnl-genl-3.0这个模块，但是我在zsh中用pkg-config命令是可以找到这个模块的，并且能够正确输出它的lib文件夹。这个问题尝试了很久都没有解决办法，所以打算换一个版本的libpcap源码
 
 ```shell
 pkg-config libnl-genl-3.0 -libs 
@@ -157,13 +159,13 @@ pkg-config libnl-genl-3.0 -libs
 -L/usr/lib32 -lnl-genl-3 -lnl-3 
 ```
 
-最后到Github上查看了一下它的仓库，发现最后一次更新在19小时前，因为当时文件是直接clone下来的，觉得可能会不稳定。于是便下载了2016年的[libpcap-1.8.0](https://github.com/the-tcpdump-group/libpcap/releases/tag/libpcap-1.8.0)版本进行编译，结果成功生成Makefile，运行make命令后在当前文件夹下生成libpcap.a文件。
+我到Github上查看了一下它的仓库，发现最后一次commit在19小时前……因为当时文件是直接clone下来的，所以觉得可能会不稳定，于是便下载了2016年的[libpcap-1.8.0](https://github.com/the-tcpdump-group/libpcap/releases/tag/libpcap-1.8.0)版本进行编译。最后成功生成Makefile，运行make命令后在当前文件夹下生成libpcap.a文件。
 
-> 选择2016年的版本是因为这个版本发布时间接近U大写的这篇教程的时间，出错的可能性最小，但是这个版本好像没有用到libnl-genl-3.0，所以之前的bug的出现原因也无从知晓。
+> 选择2016年的版本是因为这个版本发布时间接近U大写的这篇教程的时间，出错的可能性比较小。但是这个版本好像没有用到libnl-genl-3.0，所以之前的bug到底是源码的问题还是我的问题也无法判断了。
 
 #### libiconv
 
-因为是同一个shell，所以不需要再次export PATH，直接按照U大教程走就行，生成的库文件为./lib/.libs/libiconv.a
+因为是同一个shell窗口，所以不需要再次export PATH，直接按照U大教程走就行，生成的库文件为./lib/.libs/libiconv.a
 
 ```shell
 # 生成Makefile
@@ -196,4 +198,4 @@ pkg-config libnl-genl-3.0 -libs
 
 ## 总结
 
-因为是抱着边学习边编译的态度，所以大概花了我两天时间，在各个平台上学习基础知识、寻找解决办法，总的来说收获挺大的，了解了链接库和编译的相关知识。同时也感觉到影响交叉编译的因素太多了，工具链，编译环境，各依赖库的版本……调试这些报错信息需要懂得原理、根据报错信息合理的进行搜索、对搜索结果进行选择性的吸收并进行测试。虽然最后通过编译旧版的libpcap解决了问题，但接下来我也会在Ubuntu下或者运用别的工具链再次进行尝试。
+因为是抱着边学习边编译的态度，所以大概花了我两天时间，在各个平台上学习基础知识、寻找解决办法，总的来说收获挺大的，了解了链接库和编译的相关知识。同时也感觉到影响交叉编译的因素太多了，工具链，编译环境，各依赖库的版本……调试这些报错信息需要懂得原理、根据报错信息合理的进行搜索、对搜索结果进行选择性的吸收并进行测试。虽然最后通过编译旧版的libpcap编译成功，但之前的bug仍然未查出原因，接下来我也会在Ubuntu下或者运用别的工具链再次进行尝试。
