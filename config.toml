@@ -11,6 +11,7 @@ enableRobotsTXT = true
 googleAnalytics = ""
 disqusShortname = ""
 
+
 [sitemap]
     changefreq = "weekly"
     filename = "sitemap.xml"
@@ -22,8 +23,12 @@ disqusShortname = ""
 # disable condeFences to use theme code highlight
 # or this will give u an annoying code block background color
 [markup]
-  [markup.highlight]
-    codeFences = false
+	# 解决渲染markdown时忽略html代码的问题
+	[markup.goldmark]
+		[markup.goldmark.renderer]
+			unsafe = true
+	[markup.highlight]
+		codeFences = false
 
 [menu]
   [[menu.main]]
