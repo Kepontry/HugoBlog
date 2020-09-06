@@ -1,5 +1,6 @@
 ---
 title: WSL+zsh下的agnoster主题乱码问题
+slug: WSL-zsh-agnoster-wrong-display
 author: "Kepontry"
 tags: ["Fonts", "agnoster"]
 categories: ["WSL"]

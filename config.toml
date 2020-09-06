@@ -18,7 +18,7 @@ disqusShortname = ""
     priority = 0.5
 
 [Permalinks]
-    posts = "/posts/:year/:filename/"
+    posts = "/posts/:year/:slug/"
 
 # disable condeFences to use theme code highlight
 # or this will give u an annoying code block background color

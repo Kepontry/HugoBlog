@@ -1,5 +1,6 @@
 ---
 title: 在Archlinux下交叉编译mentohust
+slug: Archlinux-crosscompile-mentohust
 author: "Kepontry"
 tags: ["Archlinux", "mentohust","交叉编译"]
 categories: ["Linux"]

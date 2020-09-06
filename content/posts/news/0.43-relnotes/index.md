@@ -1,4 +1,3 @@
-
 ---
 date: 2018-07-09
 title: "And Now: Hugo Pipes!"
