@@ -190,13 +190,13 @@ defaultContentLanguage = "en"
     clientSecret = "" # Your client secret
 
 [params.valine]
-    enable = false
-    appId = 'your appId'
-    appKey = 'your appKey'
+    enable = true
+    appId = 'WUAcaCy7z47EfHHnamMQ3SW1-gzGzoHsz'
+    appKey = 'B3xvyoE5BqKECNmWmVOwo6g8'
     notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
-    verify = false # Verification code
+    verify = true # Verification code
     avatar = 'mm'
-    placeholder = 'your comments ...'
+    placeholder = '请在这儿写下你的评论'
     visitor = true
 
 [params.utterances]       # https://utteranc.es/
