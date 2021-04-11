@@ -28,7 +28,15 @@ disqusShortname = ""
 		[markup.goldmark.renderer]
 			unsafe = true
 	[markup.highlight]
-		codeFences = false
+		codeFences = true
+		guessSyntax = true
+		hl_Lines = ""
+		lineNoStart = 1
+		lineNos = true
+		lineNumbersInTable = false
+		noClasses = true
+		# style = "github"
+		tabWidth = 4
 
 [menu]
   [[menu.main]]
